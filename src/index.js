@@ -5,6 +5,7 @@ function generateRecipe(event){
     strings: "Here's a quick scrambled eggs recipe",
     autoStart: true,
     delay: 0.5,
+    cursor: "",
   });
 
 
