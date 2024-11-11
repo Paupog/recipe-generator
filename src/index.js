@@ -16,11 +16,21 @@ function generateRecipe(event){
     
     let instructionsInput = document.querySelector("#user-instructions");
     let apiKey = "dfd0t6478f0367aa31fdf9o1c7ab1790";    
-    let context = 
-    "You are an experienced chef in a cafe who loves to cook quick and tasty vegetarian food. Your mission is to generate a recipe that is easy to follow, and include maximum 5 ingredients. Separate the recipe in a readable way. I want ingredients to be in bullet points in basic HTML and separate each line with a <br /> above instructions. Make sure to follow the user instructions. Sign the recipe with 'Paulina AI' inside a <strong> element at the end of the recipe and NOT at the beginning. Dont use hashtags";
-    let prompt = `User instructions: Generate a recipe out of these ingredients ${instructionsInput.value}`;
-    let apiURL = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`; 
+    let prompt = `Generate a recipe out of these ingredients ${instructionsInput.value}`;
+    let context = `
+You are an experienced chef and recipe writer. Format the recipe using basic HTML tags as follows but do not mention "HTML" in the text itself.
+
+1. Start with the recipe title, making it bold and larger using strong tags.
+2. Directly below the title, add a bold label "Ingredients" with colon after that word, and list each ingredient as a bullet point using ul and li tags.
+3. After the ingredients, add a bold label "Instructions" and format each step as a numbered list using ol and li tags, with each step on a new line.
+4. At the end, sign off with "Paulina AI" in bold using strong tags.
+
+Please follow this exact structure without mentioning the word "HTML" in the final text.`;
+
+let apiURL = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`; 
     
+let recipeElement =document.querySelector("#recipe");
+recipeElement.classList.remove("hidden");
 
     console.log("Generating recipe");
     console.log(`Prompt: ${prompt}`);
