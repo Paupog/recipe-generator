@@ -29,12 +29,10 @@ Please follow this exact structure without mentioning the word "HTML" in the fin
 
 let apiURL = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`; 
     
-let recipeElement =document.querySelector("#recipe");
-recipeElement.classList.remove("hidden");
+let recipeElement = document.querySelector("#recipe");
+    recipeElement.classList.remove("hidden");
+    recipeElement.innerHTML = `<dic class="generating">⏳Generating a recipe with: ${instructionsInput.value}`;
 
-    console.log("Generating recipe");
-    console.log(`Prompt: ${prompt}`);
-    console.log(`Context: ${context}`);
 
     axios.get(apiURL).then(displayRecipe);
   
